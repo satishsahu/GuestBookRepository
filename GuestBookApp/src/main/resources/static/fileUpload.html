@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Bootstrap Example</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</head>
+<script>
+	$(document).ready(function() {
+
+		$("#but_upload").click(function() {
+
+			var fd = new FormData();
+			var files = $('#file')[0].files[0];
+			fd.append('file', files);
+
+			$.ajax({
+				url : '/uploadFile',
+				type : 'post',
+				data : fd,
+				contentType : false,
+				processData : false,
+				success : function(response) {
+					if (response != 0) {
+						alert('file uploaded successfully...');
+					} else {
+						alert('file not uploaded');
+					}
+				},
+			});
+		});
+	});
+</script>
+<body>
+
+	<div class="container mt-3">
+		<h2>Please select file to upload</h2>
+		<form method="post" action="" enctype="multipart/form-data" id="myform">
+			<p>Custom file:</p>
+			<div class="custom-file mb-3">
+				<input type="file" class="custom-file-input" id="customFile"
+					name="filename"> <label class="custom-file-label"
+					for="customFile">Choose file</label>
+			</div>
+
+			<div class='preview' id="successDiv">
+            	
+            </div>
+			<p>Default file:</p>
+			<input type="file" id="file" name="file">
+
+			<div class="mt-3">
+				<button type="button" class="btn btn-primary" id="but_upload">Submit</button>
+			</div>
+		</form>
+	</div>
+
+</body>
+</html>

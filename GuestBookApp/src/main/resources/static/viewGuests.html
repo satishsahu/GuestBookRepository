@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+</head>
+<script type="text/javascript">
+	$.ajax({
+		url : "/guest",
+		success : function(data) {
+
+			var table = $("#tableOrderDetail tbody");
+		    $.each(data, function(idx, elem){
+		    	console.log(idx);
+		        table.append("<tr><td>"+elem.id+"</td><td>"+elem.fname+"</td>   <td>"+elem.lname+"</td><td>"+elem.email+"</td><td>"+elem.phone+"</td><td>"+elem.approve+"</td><td><a>Delete</a></td></tr>");
+		    });
+			/* $.each(result, function(index, element) {
+				console.log(element.name);
+				$('#msgid').closest('tr').children('td').text("naveen");
+			}); */
+
+			/* $("#tableOrderDetail tbody").find("tr:gt(0)").remove(); //remove all old rows except first one
+
+			$.each(result, function(i, v) {
+
+				if (i == 0) {
+					//setting the data in first row itself
+					setDataOnRow($("#tableOrderDetail tbody").find("tr")
+							.first(), v);
+
+				} else {
+
+					//clonning the first row and setting data over it and then appending in tbody
+					var clonnedRow = $(
+							$("#tableOrderDetail tbody").find("tr").first())
+							.clone();
+					setDataOnRow(clonnedRow, v);
+
+					$("#tableOrderDetail tbody").append(clonnedRow);
+
+				}
+			});
+			//set the data in row
+			function setDataOnRow(rowObject, v) {
+				var test = v.ProductName;
+				var NoOfCarton = v.NoOfCarton;
+				$(rowObject).find(".ProductName").html(test);
+				$(rowObject).find(".NoOfCarton").html(NoOfCarton);
+			} */
+		}
+	});
+</script>
+<body>
+
+	<div class="container">
+		<h2>Guests Dashboard</h2>
+		<div class="table-responsive">
+			<table id="tableOrderDetail" class="table">
+				<thead>
+					<tr>
+						<th>No</th>
+						<th>Firstname</th>
+						<th>Lastname</th>
+						<th>Email</th>
+						<th>Phone</th>
+						<th>Approve</th>
+						<th>Remove</th>
+					</tr>
+				</thead>
+				<tbody>
+					<!-- <tr>
+						<td class="no">1</td>
+						<td class="fname">Anna</td>
+						<td class="lname">Pitt</td>
+						<td class="email">anna.p@gmail.com</td>
+						<td class="phone">9667722653</td>
+						<td class="approve">Approved</td>
+						<td class="delete"><a href="http://www.yahoo.com">Delete</a></td>
+					</tr> -->
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+</body>
+</html>

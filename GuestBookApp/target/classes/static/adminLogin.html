@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Bootstrap Example</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+</head>
+<script type="text/javascript">
+	/* $.ajax({
+		type : 'POST',
+		url : "/login",
+		data : myKeyVals,
+		dataType : "text",
+		success : function(data) {
+
+		}
+	}); */
+	$(document).ready(function() {
+		$("#submit-button").click(function() {
+			jsonObj = [];
+			var uname = $('#uname').val();
+			var psw = $('#pwd').val();
+			var myKeyVals = '{"userName": "' + uname + '", "password" : "' + psw + '"}';
+			var vals = uname +"-"+ psw;
+			item = {}
+	        item ["username"] = uname;
+	        item ["password"] = psw;
+	        jsonObj.push(item);
+			$.ajax({
+				type : 'POST',
+				url : "/adminlogin",
+				data : vals,
+				dataType : "json",
+				success : function(data) {
+					console.log("data: "+data);
+					if(data == true){
+						window.location.href = "/viewGuests.html";
+					}
+					
+				}
+			});
+		});
+	});
+</script>
+
+<body>
+
+	<div class="container">
+		<h2>Admin Login</h2>
+		<div class="form-group">
+			<label for="uname">Username:</label> <input type="uname"
+				class="form-control" id="uname" placeholder="Enter email"
+				name="uname">
+		</div>
+		<div class="form-group">
+			<label for="pwd">Password:</label> <input type="password"
+				class="form-control" id="pwd" placeholder="Enter password"
+				name="pwd">
+		</div>
+		<div class="checkbox">
+			<label><input type="checkbox" name="remember">
+				Remember me</label>
+		</div>
+		<button type="submit" id="submit-button" class="btn btn-default" >Submit</button>
+	</div>
+
+</body>
+</html>
